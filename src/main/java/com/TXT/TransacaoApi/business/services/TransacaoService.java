@@ -1,6 +1,6 @@
 package com.TXT.TransacaoApi.business.services;
 
-import com.TXT.TransacaoApi.controller.dtos.TransacaoRequesDto;
+import com.TXT.TransacaoApi.controller.dtos.TransacaoRequestDto;
 import com.TXT.TransacaoApi.infrastructure.exceptions.UnprocessableEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +16,10 @@ import java.util.List;
 //biblioteca de Logs
 @Slf4j
 public class TransacaoService {
-    private final List<TransacaoRequesDto> ListaTransacoes = new ArrayList<>();
+    private final List<TransacaoRequestDto> ListaTransacoes = new ArrayList<>();
 
 
-    public void adicionarTransacoes(TransacaoRequesDto dto){
+    public void adicionarTransacoes(TransacaoRequestDto dto){
         log.info("Iniciado processamento de gravar Transacoes");
         //vai pegar a data e hora atual e verificar se eh posterior a data atual
         if(dto.dataHora().isAfter(OffsetDateTime.now())){
@@ -36,7 +36,7 @@ public class TransacaoService {
         ListaTransacoes.clear();
     }
 
-    public List<TransacaoRequesDto>bucarTrasacoes(Integer intervaloBusca){
+    public List<TransacaoRequestDto>bucarTrasacoes(Integer intervaloBusca){
         //vai pegar todas as tramsacoes realizadas no ultimo minuto  ("OffsetDateTime.now()") menos ("intervaloBusca")
         OffsetDateTime dataHoraIntervalo = OffsetDateTime.now().minusSeconds(intervaloBusca);
 
